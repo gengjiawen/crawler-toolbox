@@ -1,0 +1,69 @@
+{
+  "name": "crawler-toolbox",
+  "version": "0.0.1",
+  "description": "my delightful project",
+  "repository": {
+    "url": "gengjiawen/crawler-toolbox",
+    "type": "git"
+  },
+  "author": "jiawen geng <technicalcute@gmail.com>",
+  "scripts": {
+    "start": "tsc -w",
+    "server": "ts-node-dev --respawn libs/index.ts",
+    "clean": "rimraf build",
+    "format": "prettier --write \"{examples,libs,script,test,bin}/**/*.{js,ts}\" \"*.yml\"",
+    "format:check": "prettier --list-different \"{examples,libs,script,test,bin}/**/*.{js,ts}\" \"*.yml\"",
+    "test": "jest",
+    "build": "npm run clean && tsc -p ./tsconfig.json"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "turndown": "^7.0.0",
+    "turndown-plugin-gfm": "^1.0.2",
+    "typeorm": "^0.2.31"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.22",
+    "@types/node": "14.14.37",
+    "husky": "6.0.0",
+    "jest": "26.6.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "2.2.1",
+    "rimraf": "3.0.2",
+    "ts-jest": "26.5.4",
+    "ts-node-dev": "1.1.6",
+    "typescript": "4.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,md,css,html,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/?(*.)(spec|test).(ts|tsx|js)",
+      "**/__tests__/*.(ts|tsx|js)",
+      "**/test/*.(ts|tsx|js)"
+    ]
+  }
+}
