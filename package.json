@@ -1,6 +1,6 @@
 {
   "name": "crawler-toolbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "my delightful project",
   "repository": {
     "url": "gengjiawen/crawler-toolbox",
@@ -17,6 +17,7 @@
     "build": "npm run clean && tsc -p ./tsconfig.json"
   },
   "dependencies": {
+    "@mozilla/readability": "^0.4.1",
     "async": "^3.2.1",
     "axios": "^0.21.1",
     "better-sqlite3": "^7.4.3",

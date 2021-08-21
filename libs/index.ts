@@ -7,7 +7,7 @@ import * as os from 'os'
 import { createConnection } from 'typeorm'
 import { Urls } from './entity/urls'
 
-let connection:any 
+let connection: any
 
 export async function initDB() {
   connection = await createConnection({
@@ -23,31 +23,56 @@ export type CrawlerOptions = {
   cache: boolean
 }
 
+export function getDom(content: string, node: string) {
+  return cheerio.load(content)
+}
+
+export function getArticle(content: string) {
+  const { Readability } = require('@mozilla/readability')
+  let reader = new Readability(content)
+  let article = reader.parse()
+  return article
+}
+
+export function toMarkdown(content: string) {
+  const turndownPluginGfm = require('turndown-plugin-gfm')
+  const gfm = turndownPluginGfm.gfm
+  const TurndownService = require('turndown')
+  const turndownService = new TurndownService()
+  turndownService.use(gfm)
+
+  const markdown = turndownService.turndown(content)
+  return markdown
+}
+
 export async function getData(url: string, options?: CrawlerOptions) {
   const cache = options?.cache
   if (cache) {
     if (!connection) {
-        await initDB()
+      await initDB()
     }
 
-    const content = await Urls.findOne({url})
+    const item = await Urls.findOne({ url })
 
-    if (content) {
-        console.log('didi', content)
-      return content
+    if (item) {
+      return {
+        content: item.content,
+        cache: true,
+      }
     }
   }
 
   return axios.get(url).then(async (i) => {
-    console.log(i)
+    let content = i.data
     if (cache) {
       await Urls.create({
         url,
-        content: i.data,
+        content,
       }).save()
     }
-    const $ = cheerio.load(i.data)
-    console.log($)
-    return $
+    return {
+      content,
+      cache: false,
+    }
   })
 }
