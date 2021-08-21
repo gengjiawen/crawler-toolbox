@@ -1,7 +1,8 @@
 {
   "name": "crawler-toolbox",
   "version": "1.0.0",
-  "description": "my delightful project",
+  "description": "crawler toolbox",
+  "main": "build/index.js",
   "repository": {
     "url": "gengjiawen/crawler-toolbox",
     "type": "git"
