@@ -8,4 +8,4 @@ FROM gitpod/workspace-full:latest
 
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH"
 
-RUN brew install sqlite3 curl
+# RUN brew install sqlite3 curl
