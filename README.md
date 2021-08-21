@@ -1,4 +1,7 @@
 ## Intro
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/gengjiawen/crawler-toolbox)
+[![npm version](https://img.shields.io/npm/v/crawler-toolbox)](https://www.npmjs.com/package/crawler-toolbox)
+
 a common crawler for webpages
 
 Feature
