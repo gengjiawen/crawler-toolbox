@@ -2,7 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
+  - init: brew install sqlite3 curl && exit
+  - init: npm i -g npm-check-updates && exit
   - init: yarn install
+  - init: fish
 
 vscode:
   extensions:
