@@ -7,6 +7,13 @@
     "url": "gengjiawen/crawler-toolbox",
     "type": "git"
   },
+  "keywords": [
+    "http",
+    "ajax",
+    "crawler",
+    "proxy",
+    "node"
+  ],
   "author": "jiawen geng <technicalcute@gmail.com>",
   "scripts": {
     "start": "tsc -w",
