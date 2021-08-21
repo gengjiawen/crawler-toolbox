@@ -31,7 +31,8 @@ it('test readability', async () => {
   let content = article!.content
 
   patchDom(content, $ => {
-    $('div.data-title').remove()
+    // https://stackoverflow.com/a/48379445/1713757
+    $('div[data-title]').remove()
     content = $.html()
   })
   
@@ -45,7 +46,13 @@ it('test markdown', async () => {
 
   let result = await getData(url, { cache: true })
   const article = getArticle(result.content)
-  let md = toMarkdown(article!.content)
+  let content = article!.content
+
+  patchDom(content, $ => {
+    $('div[data-title]').remove()
+    content = $.html()
+  })
+  let md = toMarkdown(content)
   fs.writeFileSync('build/count-func.md', md)
   expect(md).toBeTruthy()
 })
