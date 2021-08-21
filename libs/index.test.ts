@@ -1,5 +1,6 @@
+import { getArticle } from './utils'
 import { Urls } from './entity/urls'
-import { getArticle, getData, initDB } from './index'
+import { getData, initDB } from './index'
 
 it('test cache', async () => {
   let url = 'https://www.sqlitetutorial.net/sqlite-count-function/'
@@ -21,5 +22,5 @@ it('test readability', async () => {
 
   let result = await getData(url, { cache: true })
   const article = getArticle(result.content)
-  console.log(article);
+  expect(article?.content).toBeTruthy()
 })
