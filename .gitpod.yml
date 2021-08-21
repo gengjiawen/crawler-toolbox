@@ -3,3 +3,7 @@ image:
 
 tasks:
   - init: yarn install
+
+vscode:
+  extensions:
+    - gengjiawen.vscode-wakatime-gitpods
