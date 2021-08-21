@@ -1,6 +1,12 @@
-import { getArticle } from './utils'
+import * as fs from 'fs'
+import { getArticle, patchDom, toMarkdown } from './utils'
 import { Urls } from './entity/urls'
 import { getData, initDB } from './index'
+
+try {
+  fs.mkdirSync('build')
+} catch (error) {
+}
 
 it('test cache', async () => {
   let url = 'https://www.sqlitetutorial.net/sqlite-count-function/'
@@ -22,5 +28,24 @@ it('test readability', async () => {
 
   let result = await getData(url, { cache: true })
   const article = getArticle(result.content)
-  expect(article?.content).toBeTruthy()
+  let content = article!.content
+
+  patchDom(content, $ => {
+    $('div.data-title').remove()
+    content = $.html()
+  })
+  
+  fs.writeFileSync('build/count-func.html', content)
+  expect(content).toBeTruthy()
+})
+
+it('test markdown', async () => {
+  let url = 'https://www.sqlitetutorial.net/sqlite-count-function/'
+  await initDB()
+
+  let result = await getData(url, { cache: true })
+  const article = getArticle(result.content)
+  let md = toMarkdown(article!.content)
+  fs.writeFileSync('build/count-func.md', md)
+  expect(md).toBeTruthy()
 })

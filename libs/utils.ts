@@ -2,8 +2,11 @@
 import * as cheerio from 'cheerio'
 import { Readability } from '@mozilla/readability'
 
-export function getDom(content: string, node: string) {
-  return cheerio.load(content)
+type patchFunction = (a: cheerio.Root) => any;
+
+export function patchDom(content: string, func: patchFunction) {
+    const $ = cheerio.load(content)
+    return func($)
 }
 
 export function getArticle(content: string, url: string = 'https://example.com/') {
