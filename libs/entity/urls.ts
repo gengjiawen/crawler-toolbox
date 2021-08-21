@@ -1,14 +1,28 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique } from "typeorm";
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Unique,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 
 @Entity()
-@Unique(["url"])
+@Unique(['url'])
 export class Urls extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @PrimaryGeneratedColumn()
+  id!: number
 
-    @Column()
-    url!: string;
+  @Column()
+  url!: string
 
-    @Column()
-    content!: string;
+  @Column()
+  content!: string
+
+  @CreateDateColumn()
+  created_at!: Date
+
+  @UpdateDateColumn()
+  updated_at!: Date
 }

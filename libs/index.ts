@@ -10,6 +10,9 @@ import { Urls } from './entity/urls'
 let connection: any
 
 export async function initDB() {
+  if (connection) {
+    return
+  }
   connection = await createConnection({
     name: 'default',
     type: 'better-sqlite3',
@@ -27,9 +30,13 @@ export function getDom(content: string, node: string) {
   return cheerio.load(content)
 }
 
-export function getArticle(content: string) {
+export function getArticle(content: string, url: string = 'https://example.com/') {
   const { Readability } = require('@mozilla/readability')
-  let reader = new Readability(content)
+  const JSDOM = require('jsdom').JSDOM
+  const doc = new JSDOM(content, {
+    url,
+  })
+  let reader = new Readability(doc.window.document)
   let article = reader.parse()
   return article
 }
