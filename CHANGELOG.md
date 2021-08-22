@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.2](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.0.1...v1.0.2) (2021-08-22)
+
+
+### Bug Fixes
+
+* git hooks ([3db5209](https://www.github.com/gengjiawen/crawler-toolbox/commit/3db5209b9c5d63270dfc723d25990e49d5277812))
+
 ### [1.0.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.0.0...v1.0.1) (2021-08-21)
 
 
