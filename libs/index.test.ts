@@ -5,8 +5,7 @@ import { getData, initDB } from './index'
 
 try {
   fs.mkdirSync('build')
-} catch (error) {
-}
+} catch (error) {}
 
 it('test cache', async () => {
   let url = 'https://www.sqlitetutorial.net/sqlite-count-function/'
@@ -30,12 +29,12 @@ it('test readability', async () => {
   const article = getArticle(result.content)
   let content = article!.content
 
-  patchDom(content, $ => {
+  patchDom(content, ($) => {
     // https://stackoverflow.com/a/48379445/1713757
     $('div[data-title]').remove()
     content = $.html()
   })
-  
+
   fs.writeFileSync('build/count-func.html', content)
   expect(content).toBeTruthy()
 })
@@ -48,7 +47,7 @@ it('test markdown', async () => {
   const article = getArticle(result.content)
   let content = article!.content
 
-  patchDom(content, $ => {
+  patchDom(content, ($) => {
     $('div[data-title]').remove()
     content = $.html()
   })

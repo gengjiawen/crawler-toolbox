@@ -1,15 +1,17 @@
-
 import * as cheerio from 'cheerio'
 import { Readability } from '@mozilla/readability'
 
-type patchFunction = (a: cheerio.Root) => any;
+type patchFunction = (a: cheerio.Root) => any
 
 export function patchDom(content: string, func: patchFunction) {
-    const $ = cheerio.load(content)
-    return func($)
+  const $ = cheerio.load(content)
+  return func($)
 }
 
-export function getArticle(content: string, url: string = 'https://example.com/') {
+export function getArticle(
+  content: string,
+  url: string = 'https://example.com/'
+) {
   const JSDOM = require('jsdom').JSDOM
   const doc = new JSDOM(content, {
     url,
