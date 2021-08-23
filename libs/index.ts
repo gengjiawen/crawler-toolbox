@@ -2,19 +2,21 @@ import axios from 'axios'
 // import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-import { createConnection } from 'typeorm'
+import { Connection, createConnection } from 'typeorm'
 import { Urls } from './entity/urls'
 
-let connection: any
+export let dbConnection: null | Connection
+
+let dbLocation = process.env.CRAWLER_DB_LOCATION ?? path.join(os.homedir(), 'crawler.db')
 
 export async function initDB() {
-  if (connection) {
+  if (dbConnection) {
     return
   }
-  connection = await createConnection({
-    name: 'default',
+  dbConnection = await createConnection({
+    name: 'crawler-db',
     type: 'better-sqlite3',
-    database: path.join(os.homedir(), 'crawler.db'),
+    database: dbLocation,
     entities: [__dirname + '/entity/**/*.{js,ts}'],
     synchronize: true,
   })
@@ -27,7 +29,7 @@ export type CrawlerOptions = {
 export async function getData(url: string, options?: CrawlerOptions) {
   const cache = options?.cache
   if (cache) {
-    if (!connection) {
+    if (!dbConnection) {
       await initDB()
     }
 
