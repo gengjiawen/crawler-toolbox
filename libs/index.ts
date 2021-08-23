@@ -15,7 +15,7 @@ export async function initDB() {
     return
   }
   dbConnection = await createConnection({
-    name: 'crawler-db',
+    name: 'default',
     type: 'better-sqlite3',
     database: dbLocation,
     entities: [__dirname + '/entity/**/*.{js,ts}'],
@@ -25,7 +25,7 @@ export async function initDB() {
 
 export type CrawlerOptions = {
   cache: boolean
-  axiosConfig: AxiosRequestConfig
+  axiosConfig? : AxiosRequestConfig
 }
 
 export async function getData(url: string, options?: CrawlerOptions) {
