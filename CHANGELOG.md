@@ -2,6 +2,11 @@
 
 ## [1.2.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.1.0...v1.2.1) (2021-08-23)
 
+### Bug Fixes
+
+* delay db location init ([d712dd9](https://www.github.com/gengjiawen/crawler-toolbox/commit/d712dd98415e9e57cffa5c3014705e7945c2d635))
+
+## [1.2.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.1.0...v1.2.0) (2021-08-23)
 
 ### Features
 
@@ -13,7 +18,6 @@
 
 * add keywords ([72e2469](https://www.github.com/gengjiawen/crawler-toolbox/commit/72e246901f8d2a95963b354be5fc4befeb221ed1))
 * build issue ([d75f845](https://www.github.com/gengjiawen/crawler-toolbox/commit/d75f8453b945c0137e33248cc3676b65e1b84a0c))
-* delay db location init ([d712dd9](https://www.github.com/gengjiawen/crawler-toolbox/commit/d712dd98415e9e57cffa5c3014705e7945c2d635))
 
 ## [1.1.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.0.1...v1.1.0) (2021-08-23)
 
