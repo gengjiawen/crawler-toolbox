@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.0.1...v1.1.0) (2021-08-23)
+
+
+### Features
+
+* expose utils ([4c8b215](https://www.github.com/gengjiawen/crawler-toolbox/commit/4c8b2152454f114ad5985e867515b9446c857892))
+
+
+### Bug Fixes
+
+* entity not working in production mode ([93e6de1](https://www.github.com/gengjiawen/crawler-toolbox/commit/93e6de153a0ca18f5ea988941bee836d5b983ef0))
+* git hooks ([3db5209](https://www.github.com/gengjiawen/crawler-toolbox/commit/3db5209b9c5d63270dfc723d25990e49d5277812))
+
 ### [1.0.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.0.0...v1.0.1) (2021-08-21)
 
 
