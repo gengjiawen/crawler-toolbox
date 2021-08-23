@@ -6,9 +6,9 @@ a common crawler for webpages
 
 Feature
 
-* cache support
+* cache support (persistent with sqlite default on `/$homedir/crawler.db`)
 * markdown support
-* dom operation support
+* dom operation support (cheerio)
 
 ## Dev Setup
 
