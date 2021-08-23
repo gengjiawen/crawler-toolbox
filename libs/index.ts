@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 // import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
@@ -7,7 +7,8 @@ import { Urls } from './entity/urls'
 
 export let dbConnection: null | Connection
 
-let dbLocation = process.env.CRAWLER_DB_LOCATION ?? path.join(os.homedir(), 'crawler.db')
+let dbLocation =
+  process.env.CRAWLER_DB_LOCATION ?? path.join(os.homedir(), 'crawler.db')
 
 export async function initDB() {
   if (dbConnection) {
@@ -24,6 +25,7 @@ export async function initDB() {
 
 export type CrawlerOptions = {
   cache: boolean
+  axiosConfig: AxiosRequestConfig
 }
 
 export async function getData(url: string, options?: CrawlerOptions) {
@@ -43,7 +45,11 @@ export async function getData(url: string, options?: CrawlerOptions) {
     }
   }
 
-  return axios.get(url).then(async (i) => {
+  return axios({
+    method: 'GET',
+    url,
+    ...options?.axiosConfig
+  }).then(async (i) => {
     let content = i.data
     if (cache) {
       await Urls.create({
