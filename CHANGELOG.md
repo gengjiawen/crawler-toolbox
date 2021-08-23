@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.1.0...v1.2.1) (2021-08-23)
+## [1.2.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.2.0...v1.2.1) (2021-08-23)
 
 ### Bug Fixes
 
