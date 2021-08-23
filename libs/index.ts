@@ -15,7 +15,7 @@ export async function initDB() {
     name: 'default',
     type: 'better-sqlite3',
     database: path.join(os.homedir(), 'crawler.db'),
-    entities: [__dirname + '/entity/**/*.ts'],
+    entities: [__dirname + '/entity/**/*.{js,ts}'],
     synchronize: true,
   })
 }
