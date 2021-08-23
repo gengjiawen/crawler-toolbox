@@ -1,7 +1,6 @@
 import * as fs from 'fs'
-import { getArticle, patchDom, toMarkdown } from './utils'
 import { Urls } from './entity/urls'
-import { getData, initDB } from './index'
+import { getArticle, getData, initDB, patchDom, toMarkdown } from './index'
 
 try {
   fs.mkdirSync('build')
