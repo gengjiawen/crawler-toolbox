@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.1.0...v1.1.1) (2021-08-23)
+
+
+### Bug Fixes
+
+* add keywords ([72e2469](https://www.github.com/gengjiawen/crawler-toolbox/commit/72e246901f8d2a95963b354be5fc4befeb221ed1))
+
 ## [1.1.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.0.1...v1.1.0) (2021-08-23)
 
 
