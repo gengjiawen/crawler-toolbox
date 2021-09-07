@@ -2,10 +2,12 @@ import axios, { AxiosRequestConfig } from 'axios'
 // import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-import { Connection, createConnection } from 'typeorm'
+import { Connection, createConnection, getConnection } from 'typeorm'
 import { Urls } from './entity/urls'
 
 export let dbConnection: null | Connection
+
+const connectionName = 'crawler-connection'
 
 export async function initDB() {
   let dbLocation =
@@ -14,7 +16,7 @@ export async function initDB() {
     return
   }
   dbConnection = await createConnection({
-    name: 'default',
+    name: connectionName,
     type: 'better-sqlite3',
     database: dbLocation,
     entities: [__dirname + '/entity/**/*.{js,ts}'],
@@ -27,6 +29,14 @@ export type CrawlerOptions = {
   axiosConfig?: AxiosRequestConfig
 }
 
+export function getManagers() {
+  return getConnection(connectionName).manager
+}
+
+export function getUrlEntity() {
+  return getConnection(connectionName).manager.getRepository(Urls)
+}
+
 export async function getData(url: string, options?: CrawlerOptions) {
   const cache = options?.cache
   if (cache) {
@@ -34,7 +44,7 @@ export async function getData(url: string, options?: CrawlerOptions) {
       await initDB()
     }
 
-    const item = await Urls.findOne({ url })
+    const item = await getUrlEntity().findOne({ url })
 
     if (item) {
       return {
@@ -51,7 +61,9 @@ export async function getData(url: string, options?: CrawlerOptions) {
   }).then(async (i) => {
     let content = i.data
     if (cache) {
-      await Urls.create({
+      const urls = getUrlEntity();
+      console.log(urls)
+      await urls.create({
         url,
         content,
       }).save()
