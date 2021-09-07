@@ -1,6 +1,5 @@
 import * as fs from 'fs'
-import { Urls } from './entity/urls'
-import { getArticle, getData, initDB, patchDom, toMarkdown } from './index'
+import { getArticle, getData, getUrlEntity, initDB, patchDom, toMarkdown } from './index'
 
 try {
   fs.mkdirSync('build')
@@ -9,7 +8,7 @@ try {
 it('test cache', async () => {
   let url = 'https://www.sqlitetutorial.net/sqlite-count-function/'
   await initDB()
-  await Urls.delete({ url })
+  await getUrlEntity().delete({ url })
 
   // cache if not exists
   let result = await getData(url, { cache: true })
