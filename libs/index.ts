@@ -62,11 +62,11 @@ export async function getData(url: string, options?: CrawlerOptions) {
     let content = i.data
     if (cache) {
       const urls = getUrlEntity();
-      console.log(urls)
-      await urls.create({
+      const record = urls.create({
         url,
         content,
-      }).save()
+      })
+      await urls.save(record)
     }
     return {
       content,
