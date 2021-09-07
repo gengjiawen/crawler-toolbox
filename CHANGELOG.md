@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.2.0...v1.3.0) (2021-09-07)
+
+
+### Features
+
+* support multi-db ([#11](https://www.github.com/gengjiawen/crawler-toolbox/issues/11)) ([229f293](https://www.github.com/gengjiawen/crawler-toolbox/commit/229f293a1eb3a1858c16dfabba45b08c032e3f27))
+
+
+### Bug Fixes
+
+* changelog ([3fde30c](https://www.github.com/gengjiawen/crawler-toolbox/commit/3fde30cbb9cd02da3795eae17e348c159380af96))
+* hack for release please ([6fc9df6](https://www.github.com/gengjiawen/crawler-toolbox/commit/6fc9df6d83e69454f9ec7e23bad365e6b68dbcc6))
+* log entry ([737f6d4](https://www.github.com/gengjiawen/crawler-toolbox/commit/737f6d43dc17c4011f8e6b2efb18a7862e16bd12))
+* replace husky ([b22b02b](https://www.github.com/gengjiawen/crawler-toolbox/commit/b22b02bd7adc7677e8fdd92d6e5cb126c26948d7))
+
 ## [1.2.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.2.0...v1.2.1) (2021-08-23)
 
 ### Bug Fixes
