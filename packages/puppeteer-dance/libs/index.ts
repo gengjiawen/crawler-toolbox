@@ -26,7 +26,7 @@ export async function openBrowser(url?: string) {
 
 export async function getBrowser() {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     devtools: true,
     args: common_args,
   })
