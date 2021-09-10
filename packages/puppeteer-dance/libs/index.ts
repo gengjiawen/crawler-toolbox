@@ -18,7 +18,9 @@ export async function openBrowser(url?: string) {
   if (url) {
     console.log(`launching ${url}`)
     const page = await browser.newPage()
-    page.goto(url)
+    page.goto(url, {
+      timeout: 0,
+    })
   }
 }
 
