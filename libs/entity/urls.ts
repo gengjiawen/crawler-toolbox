@@ -23,6 +23,6 @@ export class Urls extends BaseEntity {
   @CreateDateColumn()
   created_at!: Date
 
-  @UpdateDateColumn({ onUpdate: "CURRENT_TIMESTAMP" })
+  @UpdateDateColumn({ onUpdate: 'CURRENT_TIMESTAMP' })
   updated_at!: Date
 }

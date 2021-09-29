@@ -1,10 +1,16 @@
 import * as fs from 'fs'
-import { getArticle, getData, getUrlEntity, initDB, patchDom, toMarkdown } from './index'
+import {
+  getArticle,
+  getData,
+  getUrlEntity,
+  initDB,
+  patchDom,
+  toMarkdown,
+} from './index'
 
 try {
   fs.mkdirSync('build')
 } catch (error) {}
-
 
 test('test record update', async () => {
   let url = 'https://httpbin.org/get'

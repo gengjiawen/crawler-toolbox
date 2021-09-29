@@ -22,7 +22,8 @@
     "format": "prettier --write \"{examples,libs,script,test,bin}/**/*.{js,ts}\" \"*.yml\"",
     "format:check": "prettier --list-different \"{examples,libs,script,test,bin}/**/*.{js,ts}\" \"*.yml\"",
     "test": "jest",
-    "build": "npm run clean && tsc -p ./tsconfig.json"
+    "build": "npm run clean && tsc -p ./tsconfig.json",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@mozilla/readability": "^0.4.1",
@@ -39,18 +40,15 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "27.0.1",
-    "@types/node": "16.7.13",
-    "jest": "27.1.0",
+    "@types/jest": "27.0.2",
+    "@types/node": "16.10.1",
+    "jest": "27.2.3",
     "lint-staged": "^11.1.2",
-    "prettier": "2.3.2",
+    "prettier": "2.4.1",
     "rimraf": "3.0.2",
     "ts-jest": "27.0.5",
-    "typescript": "4.4.2",
-    "yorkie": "^2.0.0"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+    "typescript": "4.4.3",
+    "husky": "^7.0.2"
   },
   "lint-staged": {
     "*.{js,ts,tsx,md,css,html,yml}": [

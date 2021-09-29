@@ -64,7 +64,7 @@ export async function getData(url: string, options?: CrawlerOptions) {
       content = JSON.stringify(content)
     }
     if (cache) {
-      const urls = getUrlEntity();
+      const urls = getUrlEntity()
       const record = urls.create({
         url,
         content,
