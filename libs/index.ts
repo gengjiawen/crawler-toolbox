@@ -60,6 +60,9 @@ export async function getData(url: string, options?: CrawlerOptions) {
     ...options?.axiosConfig,
   }).then(async (i) => {
     let content = i.data
+    if (typeof content === 'object' && content !== null) {
+      content = JSON.stringify(content)
+    }
     if (cache) {
       const urls = getUrlEntity();
       const record = urls.create({

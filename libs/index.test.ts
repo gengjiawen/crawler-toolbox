@@ -5,6 +5,19 @@ try {
   fs.mkdirSync('build')
 } catch (error) {}
 
+
+test('test record update', async () => {
+  let url = 'https://httpbin.org/get'
+  await initDB()
+  await getUrlEntity().delete({ url })
+
+  let result = await getData(url, { cache: true })
+  expect(result.cache).toBeFalsy()
+
+  result = await getData(url, { cache: false })
+  expect(result.cache).toBeFalsy()
+})
+
 it('test cache', async () => {
   let url = 'https://www.sqlitetutorial.net/sqlite-count-function/'
   await initDB()
