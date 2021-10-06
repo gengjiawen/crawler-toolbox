@@ -9,5 +9,4 @@ tasks:
 
 vscode:
   extensions:
-    - gengjiawen.vscode-wakatime-gitpods
     - firsttris.vscode-jest-runner@0.4.39
