@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.3.0...v1.4.0) (2021-10-06)
+
+
+### Features
+
+* add experimental puppeteer ([f179aee](https://www.github.com/gengjiawen/crawler-toolbox/commit/f179aeee092cb64147eb6d75fb9ea5e222b04723))
+* add puppeteer cli support ([b4181f9](https://www.github.com/gengjiawen/crawler-toolbox/commit/b4181f97de10bffa0c8bf930ec785f57853e9463))
+
+
+### Bug Fixes
+
+* improve response body compatibility ([27bee51](https://www.github.com/gengjiawen/crawler-toolbox/commit/27bee5110c291c8e878cd6aa14f5d4e95fb90c36))
+* **puppeteer:** fix timeout ([bdc4b5d](https://www.github.com/gengjiawen/crawler-toolbox/commit/bdc4b5d483c6ceb9f36db1f17eac3d5740f470cc))
+* **puppeteer:** headless mode ([0c358db](https://www.github.com/gengjiawen/crawler-toolbox/commit/0c358db59447964693198951e34a8e940c371a1c))
+* update column not get updated ([598b69b](https://www.github.com/gengjiawen/crawler-toolbox/commit/598b69bf8a4cd56018fdbad6066e7e6e9c41767b))
+
 ## [1.3.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.2.0...v1.3.0) (2021-09-07)
 
 
