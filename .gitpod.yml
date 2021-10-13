@@ -6,7 +6,3 @@ tasks:
   - init: npm i -g npm-check-updates && exit
   - init: yarn && yarn test
   - init: fish
-
-vscode:
-  extensions:
-    - firsttris.vscode-jest-runner@0.4.39
