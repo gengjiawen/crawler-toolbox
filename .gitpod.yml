@@ -1,3 +1,4 @@
+
 image:
   file: .gitpod.Dockerfile
 
@@ -6,3 +7,10 @@ tasks:
   - init: npm i -g npm-check-updates && exit
   - init: yarn && yarn test
   - init: fish
+
+vscode:
+  extensions:
+    - firsttris.vscode-jest-runner
+    - gengjiawen.vscode-postfix-ts
+    - gengjiawen.vscode-npm-dependency
+    - gengjiawen.npm-dependency-links
