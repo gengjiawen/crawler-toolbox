@@ -14,5 +14,7 @@ jobs:
     - name: Environment Information
       run: npx envinfo
     - run: yarn
+    - name: Run build
+      run: yarn build
     - name: Run Test
       run: yarn test

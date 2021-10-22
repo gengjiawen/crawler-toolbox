@@ -6,6 +6,8 @@ FROM gitpod/workspace-full:latest
 #
 # More information: https://www.gitpod.io/docs/config-docker/
 
+ENV TRIGGER_REBUILD=1
+
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH"
 
 # RUN brew install sqlite3 curl
