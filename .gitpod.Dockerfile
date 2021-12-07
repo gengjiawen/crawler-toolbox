@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full:latest
+FROM gengjiawen/gitpod-fe
 
 # Install custom tools, runtimes, etc.
 # For example "bastet", a command-line tetris clone:

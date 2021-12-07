@@ -1,3 +1,6 @@
+import {getContent} from './index'
+
 it('add more test', async () => {
-  expect(1 + 1).toBe(2)
+  let url = ''
+  await getContent(url)
 })

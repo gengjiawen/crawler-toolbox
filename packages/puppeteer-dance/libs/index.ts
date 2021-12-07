@@ -33,3 +33,13 @@ export async function getBrowser() {
 
   return browser
 }
+
+export async function getContent(url: string) {
+  const browser = await getBrowser()
+  const page = await browser.newPage()
+  page.goto(url, {
+    timeout: 0,
+    waitUntil: 'networkidle2',
+  })
+  console.log(page.content())
+}
