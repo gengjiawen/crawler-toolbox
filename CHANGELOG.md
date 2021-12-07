@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.5.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.4.0...v1.5.0) (2021-12-07)
+
+
+### Features
+
+* add crawl page for puppeteer ([bb5197b](https://www.github.com/gengjiawen/crawler-toolbox/commit/bb5197b6e609f6290f1f14347890f27df541bdd3))
+
+
+### Bug Fixes
+
+* add build to CI and bump dev container ([bb18ff5](https://www.github.com/gengjiawen/crawler-toolbox/commit/bb18ff5f4e7fdc24670022b2b3249524b002a814))
+* getting content ([252257c](https://www.github.com/gengjiawen/crawler-toolbox/commit/252257c646d4e169862ed07a46309107c195f425))
+
 ## [1.4.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.3.0...v1.4.0) (2021-10-06)
 
 
