@@ -1,6 +1,6 @@
-import {getContent} from './index'
+// import {getContent} from './index'
 
 it('add more test', async () => {
-  let url = ''
-  await getContent(url)
+  // let url = ''
+  // await getContent(url)
 })

@@ -37,9 +37,12 @@ export async function getBrowser() {
 export async function getContent(url: string) {
   const browser = await getBrowser()
   const page = await browser.newPage()
-  page.goto(url, {
+  await page.goto(url, {
     timeout: 0,
     waitUntil: 'networkidle2',
   })
-  console.log(page.content())
+  const content = await page.content()
+  console.log(content)
+  browser.close()
+  return content
 }
