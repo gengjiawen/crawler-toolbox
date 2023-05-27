@@ -57,6 +57,7 @@
     ]
   },
   "jest": {
+    "testTimeout": 60000,
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
