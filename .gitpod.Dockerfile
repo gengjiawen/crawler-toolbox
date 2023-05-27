@@ -1,4 +1,4 @@
-FROM gengjiawen/gitpod-fe
+FROM gitpod/workspace-full-vnc
 
 # Install custom tools, runtimes, etc.
 # For example "bastet", a command-line tetris clone:
@@ -6,8 +6,8 @@ FROM gengjiawen/gitpod-fe
 #
 # More information: https://www.gitpod.io/docs/config-docker/
 
-ENV TRIGGER_REBUILD=1
+ENV TRIGGER_REBUILD=2
 
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH"
 
-# RUN brew install sqlite3 curl
+RUN brew install sqlite3 curl
