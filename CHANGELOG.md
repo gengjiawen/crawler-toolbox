@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.4.0...v1.5.0) (2023-06-12)
+
+
+### Features
+
+* add crawl page for puppeteer ([bb5197b](https://www.github.com/gengjiawen/crawler-toolbox/commit/bb5197b6e609f6290f1f14347890f27df541bdd3))
+* bump db engine ([6320da4](https://www.github.com/gengjiawen/crawler-toolbox/commit/6320da418190de307b9cf5477244f0990ee23361))
+* implement getArtical ([96856a8](https://www.github.com/gengjiawen/crawler-toolbox/commit/96856a89de98cbd79ce36aaf02f783e96d2c32f0))
+
+
+### Bug Fixes
+
+* add build to CI and bump dev container ([bb18ff5](https://www.github.com/gengjiawen/crawler-toolbox/commit/bb18ff5f4e7fdc24670022b2b3249524b002a814))
+* getting content ([252257c](https://www.github.com/gengjiawen/crawler-toolbox/commit/252257c646d4e169862ed07a46309107c195f425))
+* increase timeout ([1d5abfa](https://www.github.com/gengjiawen/crawler-toolbox/commit/1d5abfa2b075a15a7705bbf4d94f509c1a958307))
+
 ## [1.4.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.3.0...v1.4.0) (2021-10-06)
 
 
