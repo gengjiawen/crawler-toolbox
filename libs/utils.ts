@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio'
 import { Readability } from '@mozilla/readability'
+import { getData } from '.'
 
 type patchFunction = (a: cheerio.Root) => any
 
@@ -29,5 +30,12 @@ export function toMarkdown(content: string) {
   turndownService.use(gfm)
 
   const markdown = turndownService.turndown(content)
+  return markdown
+}
+
+export async function getArticleMarkdown(url: string) {
+  const result = await getData(url)
+  const article = getArticle(result.content, url)
+  const markdown = toMarkdown(article!.content)
   return markdown
 }
