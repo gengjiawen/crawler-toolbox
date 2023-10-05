@@ -6,7 +6,7 @@ FROM gitpod/workspace-full-vnc
 #
 # More information: https://www.gitpod.io/docs/config-docker/
 
-ENV TRIGGER_REBUILD=2
+ENV TRIGGER_REBUILD=3
 
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH"
 

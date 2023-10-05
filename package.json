@@ -30,7 +30,7 @@
     "@types/cheerio": "^0.22.30",
     "async": "^3.2.1",
     "axios": "^0.21.4",
-    "better-sqlite3": "^8.4.0",
+    "better-sqlite3": "^8.7.0",
     "cheerio": "^1.0.0-rc.10",
     "turndown": "^7.1.1",
     "turndown-plugin-gfm": "^1.0.2",
