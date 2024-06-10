@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.7.0...v1.7.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* deps issues ([a08b67f](https://www.github.com/gengjiawen/crawler-toolbox/commit/a08b67f2e19195675284ff614ca7a9a9d5928a94))
+
 ## [1.7.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.6.0...v1.7.0) (2024-06-10)
 
 
