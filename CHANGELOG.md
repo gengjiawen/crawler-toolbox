@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.6.0...v1.7.0) (2024-06-10)
+
+
+### Features
+
+* bump deps ([856d485](https://www.github.com/gengjiawen/crawler-toolbox/commit/856d485419ea48c35881177de280e3c28d7be48b))
+
 ## [1.6.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.5.0...v1.6.0) (2023-10-05)
 
 
