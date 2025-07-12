@@ -2,10 +2,11 @@ import axios, { AxiosRequestConfig } from 'axios'
 // import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-import { Connection, createConnection, getConnection } from 'typeorm'
+import 'reflect-metadata'
+import { DataSource } from 'typeorm'
 import { Urls } from './entity/urls'
 
-export let dbConnection: null | Connection
+export let dbConnection: null | DataSource
 
 const connectionName = 'crawler-connection'
 
@@ -15,13 +16,14 @@ export async function initDB() {
   if (dbConnection) {
     return
   }
-  dbConnection = await createConnection({
+  dbConnection = new DataSource({
     name: connectionName,
     type: 'better-sqlite3',
     database: dbLocation,
     entities: [__dirname + '/entity/**/*.{js,ts}'],
     synchronize: true,
   })
+  await dbConnection.initialize()
 }
 
 export type CrawlerOptions = {
@@ -30,11 +32,17 @@ export type CrawlerOptions = {
 }
 
 export function getManagers() {
-  return getConnection(connectionName).manager
+  if (!dbConnection) {
+    throw new Error('Database connection has not been initialized. Call initDB() first.')
+  }
+  return dbConnection.manager
 }
 
 export function getUrlEntity() {
-  return getConnection(connectionName).manager.getRepository(Urls)
+  if (!dbConnection) {
+    throw new Error('Database connection has not been initialized. Call initDB() first.')
+  }
+  return dbConnection.getRepository(Urls)
 }
 
 export async function getData(url: string, options?: CrawlerOptions) {
@@ -44,7 +52,8 @@ export async function getData(url: string, options?: CrawlerOptions) {
       await initDB()
     }
 
-    const item = await getUrlEntity().findOne({ url })
+    // In TypeORM v0.3+ the `findOne` API expects a `where` condition object.
+    const item = await getUrlEntity().findOne({ where: { url } })
 
     if (item) {
       return {
