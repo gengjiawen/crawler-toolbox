@@ -33,14 +33,18 @@ export type CrawlerOptions = {
 
 export function getManagers() {
   if (!dbConnection) {
-    throw new Error('Database connection has not been initialized. Call initDB() first.')
+    throw new Error(
+      'Database connection has not been initialized. Call initDB() first.'
+    )
   }
   return dbConnection.manager
 }
 
 export function getUrlEntity() {
   if (!dbConnection) {
-    throw new Error('Database connection has not been initialized. Call initDB() first.')
+    throw new Error(
+      'Database connection has not been initialized. Call initDB() first.'
+    )
   }
   return dbConnection.getRepository(Urls)
 }
