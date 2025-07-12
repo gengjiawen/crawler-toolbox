@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.8.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.8.0...v1.8.1) (2025-07-12)
+
+
+### Bug Fixes
+
+* build issue ([1606426](https://www.github.com/gengjiawen/crawler-toolbox/commit/1606426ded0003e42e63f8693b81307e43af59c7))
+
 ## [1.8.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.7.1...v1.8.0) (2025-07-12)
 
 
