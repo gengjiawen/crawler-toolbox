@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.8.1...v1.9.0) (2025-08-08)
+
+
+### Features
+
+* Upgrade axios dependency ([#21](https://www.github.com/gengjiawen/crawler-toolbox/issues/21)) ([6045817](https://www.github.com/gengjiawen/crawler-toolbox/commit/6045817cdae504dbb01f6b9c1c5d022d07ebc4e4))
+
 ### [1.8.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.8.0...v1.8.1) (2025-07-12)
 
 
