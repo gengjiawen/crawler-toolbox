@@ -60,8 +60,12 @@
   },
   "jest": {
     "testTimeout": 60000,
+    "testEnvironment": "node",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
     }
   }
 }
