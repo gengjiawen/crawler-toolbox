@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.9.1](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.9.0...v1.9.1) (2026-06-05)
+
+
+### Bug Fixes
+
+* add permissions to release-please workflow ([7d8eaaa](https://www.github.com/gengjiawen/crawler-toolbox/commit/7d8eaaa5cc7a53dab2b01eea757ec5914fa1975f))
+
 ## [1.9.0](https://www.github.com/gengjiawen/crawler-toolbox/compare/v1.8.1...v1.9.0) (2025-08-08)
 
 
