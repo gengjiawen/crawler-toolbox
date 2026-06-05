@@ -14,6 +14,9 @@
     "proxy",
     "node"
   ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "author": "jiawen geng <technicalcute@gmail.com>",
   "scripts": {
     "start": "tsc -w",
@@ -29,27 +32,23 @@
     "@mozilla/readability": "^0.4.1",
     "@types/cheerio": "^0.22.30",
     "async": "^3.2.1",
-    "axios": "^1.11.0",
-    "better-sqlite3": "^12.2.0",
     "cheerio": "^1.0.0-rc.10",
     "jsdom": "^16.7.0",
-    "reflect-metadata": "^0.2.2",
     "turndown": "^7.1.1",
-    "turndown-plugin-gfm": "^1.0.2",
-    "typeorm": "^0.3.25"
+    "turndown-plugin-gfm": "^1.0.2"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "27.0.2",
-    "@types/node": "16.10.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.13.0",
     "husky": "^7.0.2",
-    "jest": "27.2.3",
+    "jest": "^30.4.2",
     "lint-staged": "^11.1.2",
     "prettier": "2.4.1",
     "rimraf": "3.0.2",
-    "ts-jest": "27.0.5",
+    "ts-jest": "^29.4.11",
     "typescript": "^5.8.3"
   },
   "lint-staged": {
@@ -63,9 +62,6 @@
     "testEnvironment": "node",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
-    },
-    "moduleNameMapper": {
-      "^axios$": "axios/dist/node/axios.cjs"
     }
   }
 }

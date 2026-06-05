@@ -1,14 +1,105 @@
-import axios, { AxiosRequestConfig } from 'axios'
-// import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-import 'reflect-metadata'
-import { DataSource } from 'typeorm'
+import { DatabaseSync } from 'node:sqlite'
 import { Urls } from './entity/urls'
 
-export let dbConnection: null | DataSource
+export let dbConnection: null | DatabaseSync = null
 
-const connectionName = 'crawler-connection'
+type FindOneOptions = {
+  where: Partial<Pick<Urls, 'id' | 'url'>>
+}
+
+type DeleteResult = {
+  affected: number
+}
+
+class UrlRepository {
+  constructor(private readonly database: DatabaseSync) {}
+
+  async findOne(options: FindOneOptions) {
+    const { id, url } = options.where
+    if (typeof id === 'number') {
+      return this.findById(id)
+    }
+    if (typeof url === 'string') {
+      return this.findByUrl(url)
+    }
+    return null
+  }
+
+  async delete(criteria: Partial<Pick<Urls, 'id' | 'url'>>) {
+    let result: { changes: number | bigint }
+    if (typeof criteria.id === 'number') {
+      result = this.database
+        .prepare('DELETE FROM urls WHERE id = ?')
+        .run(criteria.id)
+    } else if (typeof criteria.url === 'string') {
+      result = this.database
+        .prepare('DELETE FROM urls WHERE url = ?')
+        .run(criteria.url)
+    } else {
+      throw new Error('delete requires an id or url criteria')
+    }
+    const deleteResult: DeleteResult = {
+      affected: Number(result.changes),
+    }
+    return deleteResult
+  }
+
+  create(record: Pick<Urls, 'url' | 'content'>) {
+    return {
+      ...record,
+    } as Urls
+  }
+
+  async save(record: Pick<Urls, 'id' | 'url' | 'content'>) {
+    if (typeof record.id === 'number') {
+      this.database
+        .prepare(
+          `UPDATE urls
+           SET url = ?, content = ?, updated_at = CURRENT_TIMESTAMP
+           WHERE id = ?`
+        )
+        .run(record.url, record.content, record.id)
+      return (await this.findById(record.id)) ?? (record as Urls)
+    }
+
+    this.database
+      .prepare(
+        `INSERT INTO urls (url, content)
+         VALUES (?, ?)
+         ON CONFLICT(url) DO UPDATE SET
+           content = excluded.content,
+           updated_at = CURRENT_TIMESTAMP`
+      )
+      .run(record.url, record.content)
+    return (await this.findByUrl(record.url)) ?? (record as Urls)
+  }
+
+  private async findById(id: number) {
+    const record = this.database
+      .prepare(
+        `SELECT id, url, content, created_at, updated_at
+         FROM urls
+         WHERE id = ?`
+      )
+      .get(id) as Urls | undefined
+    return record ?? null
+  }
+
+  private async findByUrl(url: string) {
+    const record = this.database
+      .prepare(
+        `SELECT id, url, content, created_at, updated_at
+         FROM urls
+         WHERE url = ?`
+      )
+      .get(url) as Urls | undefined
+    return record ?? null
+  }
+}
+
+let urlRepository: UrlRepository | null = null
 
 export async function initDB() {
   let dbLocation =
@@ -16,19 +107,22 @@ export async function initDB() {
   if (dbConnection) {
     return
   }
-  dbConnection = new DataSource({
-    name: connectionName,
-    type: 'better-sqlite3',
-    database: dbLocation,
-    entities: [__dirname + '/entity/**/*.{js,ts}'],
-    synchronize: true,
-  })
-  await dbConnection.initialize()
+  dbConnection = new DatabaseSync(dbLocation)
+  dbConnection.exec(`
+    CREATE TABLE IF NOT EXISTS urls (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      url TEXT NOT NULL UNIQUE,
+      content TEXT NOT NULL,
+      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )
+  `)
+  urlRepository = new UrlRepository(dbConnection)
 }
 
 export type CrawlerOptions = {
-  cache: boolean
-  axiosConfig?: AxiosRequestConfig
+  cache?: boolean
+  fetchConfig?: RequestInit
 }
 
 export function getManagers() {
@@ -37,16 +131,16 @@ export function getManagers() {
       'Database connection has not been initialized. Call initDB() first.'
     )
   }
-  return dbConnection.manager
+  return dbConnection
 }
 
 export function getUrlEntity() {
-  if (!dbConnection) {
+  if (!urlRepository) {
     throw new Error(
       'Database connection has not been initialized. Call initDB() first.'
     )
   }
-  return dbConnection.getRepository(Urls)
+  return urlRepository
 }
 
 export async function getData(url: string, options?: CrawlerOptions) {
@@ -56,7 +150,6 @@ export async function getData(url: string, options?: CrawlerOptions) {
       await initDB()
     }
 
-    // In TypeORM v0.3+ the `findOne` API expects a `where` condition object.
     const item = await getUrlEntity().findOne({ where: { url } })
 
     if (item) {
@@ -67,28 +160,42 @@ export async function getData(url: string, options?: CrawlerOptions) {
     }
   }
 
-  return axios({
+  const response = await fetch(url, {
     method: 'GET',
-    url,
-    ...options?.axiosConfig,
-  }).then(async (i) => {
-    let content = i.data
-    if (typeof content === 'object' && content !== null) {
-      content = JSON.stringify(content)
-    }
-    if (cache) {
-      const urls = getUrlEntity()
-      const record = urls.create({
-        url,
-        content,
-      })
-      await urls.save(record)
-    }
-    return {
-      content,
-      cache: false,
-    }
+    ...options?.fetchConfig,
   })
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch ${url}: ${response.status} ${response.statusText}`
+    )
+  }
+
+  const content = await getResponseContent(response)
+  if (cache) {
+    const urls = getUrlEntity()
+    const record = urls.create({
+      url,
+      content,
+    })
+    await urls.save(record)
+  }
+  return {
+    content,
+    cache: false,
+  }
 }
 
 export * from './utils'
+
+async function getResponseContent(response: Response) {
+  const content = await response.text()
+  const contentType = response.headers.get('content-type') ?? ''
+  if (contentType.includes('json')) {
+    try {
+      return JSON.stringify(JSON.parse(content))
+    } catch {
+      return content
+    }
+  }
+  return content
+}
